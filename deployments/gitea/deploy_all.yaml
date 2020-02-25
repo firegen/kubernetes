@@ -42,7 +42,10 @@ spec:
           claimName: gitea-pvc    
       containers:
       - name: gitea
-        image: "gitea/gitea:latest"    
+        image: "gitea/gitea:latest"
+        volumeMounts:
+          - mountPath: "/data"
+            name: gitea-volume
 ---
 kind: Service
 apiVersion: v1
