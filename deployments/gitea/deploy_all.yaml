@@ -18,8 +18,8 @@ spec:
     requests:
       storage: 1Gi
 ---  
-apiVersion: extensions/v1beta1
 kind: Deployment
+apiVersion: v1
 metadata:
   name: gitea
   namespace: gitea
@@ -62,7 +62,6 @@ spec:
           limits:
             cpu: 1
             memory: 200Mi          
-
 ---
 apiVersion: v1
 kind: Service
