@@ -7,7 +7,7 @@ metadata:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: gitea
+  name: gitea-pvc
   namespace: gitea
   annotations:
     volume.beta.kubernetes.io/storage-class: "fast"
@@ -28,27 +28,21 @@ metadata:
     app: gitea
 spec:
   replicas: 1
+  selector: 
+    matchLabels:
+      app: gitea
   template:
     metadata:
       labels:
         app: gitea  
     spec:
       volumes:
-      - name: gitea
+      - name: gitea-volume
         persistentVolumeClaim:
-          claimName: gitea    
+          claimName: gitea-pvc    
       containers:
       - name: gitea
-        image: "gitea/gitea:latest"
-        imagePullPolicy: IfNotPresent
-
-       resources:
-          requests:
-            cpu: 10m
-            memory: 50Mi
-          limits:
-            cpu: 1
-            memory: 200Mi         
+        image: "gitea/gitea:latest"    
 ---
 apiVersion: v1
 kind: Service
