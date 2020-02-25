@@ -33,14 +33,15 @@ spec:
       labels:
         name: gitea  
     spec:
+      volumes:
+      - name: gitea
+        persistentVolumeClaim:
+          claimName: gitea    
       containers:
       - name: gitea
         image: "gitea/gitea:latest"
         imagePullPolicy: IfNotPresent
-      volumes:
-      - name: gitea
-        persistentVolumeClaim:
-          claimName: gitea
+
        resources:
           requests:
             cpu: 10m
