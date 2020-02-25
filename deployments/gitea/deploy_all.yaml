@@ -37,14 +37,17 @@ spec:
       - name: gitea
         image: "gitea/gitea:latest"
         imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 3000
-        - containerPort: 22          
       volumes:
       - name: gitea
         persistentVolumeClaim:
           claimName: gitea
-       
+       resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+          limits:
+            cpu: 1
+            memory: 200Mi         
 ---
 apiVersion: v1
 kind: Service
