@@ -18,5 +18,6 @@ apt get install nginx
 All certs and private keys could be found at "/etc/kubernetes/pki" 
 
 
-### 3. Configure all hosts redirection in /etc/nginx/nginx.conf
-see file in the repo "nginx.conf"
+### 3. Update all hosts redirection in /etc/nginx/nginx.conf
+curl -o /etc/nginx/nginx.conf https://raw.githubusercontent.com/firegen/kubernetes/master/nginx.conf
+
