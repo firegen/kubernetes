@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: gitea
-  namespace: env
+  namespace: gitea
   annotations:
     volume.beta.kubernetes.io/storage-class: "fast"
 spec:
