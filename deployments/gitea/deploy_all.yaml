@@ -3,7 +3,21 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: gitea
-  
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: gitea
+  namespace: gitea
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "fast"
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---  
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -48,20 +62,7 @@ spec:
           limits:
             cpu: 1
             memory: 200Mi          
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: gitea
-  namespace: gitea
-  annotations:
-    volume.beta.kubernetes.io/storage-class: "fast"
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
+
 ---
 apiVersion: v1
 kind: Service
