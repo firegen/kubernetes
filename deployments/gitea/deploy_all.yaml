@@ -44,20 +44,22 @@ spec:
       - name: gitea
         image: "gitea/gitea:latest"    
 ---
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: gitea
   namespace: gitea
   labels:
+    app: gitea
     name: gitea
 spec:
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 31691
+      nodePort: 31768
   selector:
-    name: gitea
+    app: gitea
   type: NodePort
   sessionAffinity: None
+  externalTrafficPolicy: Cluster
