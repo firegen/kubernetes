@@ -19,7 +19,7 @@ spec:
       storage: 1Gi
 ---  
 kind: Deployment
-apiVersion: v1
+apiVersion: apps/v1
 metadata:
   name: gitea
   namespace: gitea
@@ -31,7 +31,7 @@ spec:
   template:
     metadata:
       labels:
-        name: gitea  
+        app: gitea  
     spec:
       volumes:
       - name: gitea
